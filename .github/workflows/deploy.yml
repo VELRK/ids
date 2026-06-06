@@ -10,7 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Hostinger
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -19,12 +34,20 @@ jobs:
           port: 65002
           script: |
             TARGET=/home/u221026474/domains/intellectworksdigital.com/public_html
-            cd $TARGET
-            if [ ! -d ".git" ]; then
-              git init
-              git remote add origin https://github.com/VELRK/ids.git
-              git fetch origin main
-              git reset --hard origin/main
+            REPO=/home/u221026474/ids-repo
+            if [ ! -d "$REPO/.git" ]; then
+              git clone https://github.com/VELRK/ids.git $REPO
             else
-              git pull origin main
+              cd $REPO && git pull origin main
             fi
+
+      - name: Copy built files to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY_IDS }}
+          port: 65002
+          source: "out/*"
+          target: /home/u221026474/domains/intellectworksdigital.com/public_html/
+          strip_components: 1
