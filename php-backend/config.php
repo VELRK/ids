@@ -4,15 +4,16 @@
 // CORS Headers - Allow requests from Next.js frontend
 $allowed_origins = [
     'http://localhost:3000',
-    'https://ids-web-three.vercel.app'
+    'https://ids-web-three.vercel.app',
+    'https://intellectworksdigital.com',
+    'https://www.intellectworksdigital.com'
 ];
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
 
 if (in_array($origin, $allowed_origins)) {
     header("Access-Control-Allow-Origin: $origin");
 } else {
-    // Default to the production domain if origin isn't provided or doesn't match
-    header("Access-Control-Allow-Origin: https://ids-web-three.vercel.app");
+    header("Access-Control-Allow-Origin: https://intellectworksdigital.com");
 }
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
@@ -25,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 // MySQL Configuration
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'ids_enquiries');
+define('DB_USER', 'u221026474_ids');
+define('DB_PASS', 'Velmurugn0071@!!');
+define('DB_NAME', 'u221026474_ids');
 
 try {
     // 1. Connect to MySQL without specifying a database first
