@@ -1,0 +1,13 @@
+Options -Indexes
+RewriteEngine On
+RewriteBase /
+
+# Serve existing files directly
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Rewrite /page and /page/ to /page.html
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
+RewriteRule ^(.+?)/?$ /$1.html [L]
+
+ErrorDocument 404 /404.html
