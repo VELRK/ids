@@ -58,12 +58,18 @@ const menu_data: MenuItem[] = [
     },
     {
         id: 5,
+        title: "Our Product",
+        link: "/our-project-details?id=1",
+        has_dropdown: false
+    },
+    {
+        id: 6,
         title: "Blog",
         link: "/news",
         has_dropdown: false
     },
     {
-        id: 6,
+        id: 7,
         has_dropdown: false,
         title: "Contact Us",
         link: "/contact",

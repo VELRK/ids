@@ -2,68 +2,98 @@ import { StaticImageData } from "next/image"
 
 // Import client logos
 import logoILF from "@/assets/img/logo_images/ilf.jpg"
-import logoSyncr from "@/assets/img/logo_images/syncr.png"
 import logoMMH from "@/assets/img/logo_images/mmh.jpeg"
 import logoCP from "@/assets/img/logo_images/cp.jpeg"
 import logoDVM from "@/assets/img/logo_images/dvm.png"
-import logo2Deal from "@/assets/img/logo_images/2deal.png"
 import logoSVF from "@/assets/img/logo_images/svf.jpeg"
 import logoAnanya from "@/assets/img/logo_images/ah.png"
+import logoAishwariyams from "@/assets/img/logo_images/sa.jpeg"
 
 // Import project screenshots
-import mmh1 from "@/assets/img/inner-page/mmh1.jpeg"
-import mmh2 from "@/assets/img/inner-page/mmh2.jpeg"
-import mmh3 from "@/assets/img/inner-page/mmh3.jpeg"
-import mmh4 from "@/assets/img/inner-page/mmhw1.png"
-import mmh5 from "@/assets/img/inner-page/mmhw2.png"
-import mmh6 from "@/assets/img/inner-page/mmhw3.png"
+import mmh1 from "@/assets/img/home-1/digital_marketing/mmh/mmh1.jpeg"
+import mmh3 from "@/assets/img/home-1/digital_marketing/mmh/mmh3.jpeg"
+import mmh4 from "@/assets/img/home-1/digital_marketing/mmh/mmh4.jpeg"
+import mmh5 from "@/assets/img/home-1/digital_marketing/mmh/mmh5.jpeg"
+import mmh6 from "@/assets/img/home-1/digital_marketing/mmh/mmh6.jpeg"
+import mmh7 from "@/assets/img/home-1/digital_marketing/mmh/mmh7.jpeg"
 
-import syncr1 from "@/assets/img/inner-page/syncr-1.jpeg"
-import syncr2 from "@/assets/img/inner-page/syncr-2.jpeg"
-import syncr3 from "@/assets/img/inner-page/syncr-3.jpeg"
-import syncrweb1 from "@/assets/img/inner-page/syncr-web-1.png"
-import syncrweb2 from "@/assets/img/inner-page/syncr-web-2.png"
+import cocobliss1 from "@/assets/img/home-1/digital_marketing/mmh/mmh.png"
+import iva1 from "@/assets/img/home-1/digital_marketing/mmh/iva.png"
 
-import ecommerce1 from "@/assets/img/inner-page/2deal-1.jpeg"
-import ecommerce2 from "@/assets/img/inner-page/2deal-2.jpeg"
-import ecommerce3 from "@/assets/img/inner-page/2deal-3.jpeg"
+//Aishwariyam
 
-import indianladiesfashion1 from "@/assets/img/inner-page/indian-ladies-fashion-1.png"
-import indianladiesfashion2 from "@/assets/img/inner-page/indian-ladies-fashion-2.png"
-import indianladiesfashion3 from "@/assets/img/inner-page/indian-ladies-fashion-3.png"
-import indianladiesfashion4 from "@/assets/img/inner-page/indian-ladies-fashion-4.png"
+import aish1 from "@/assets/img/home-1/digital_marketing/aish/1.jpeg"
+import aish2 from "@/assets/img/home-1/digital_marketing/aish/2.jpeg"
+import aish3 from "@/assets/img/home-1/digital_marketing/aish/3.jpeg"
+import aish4 from "@/assets/img/home-1/digital_marketing/aish/4.jpeg"
+import aish5 from "@/assets/img/home-1/digital_marketing/aish/5.jpeg"
+import aish6 from "@/assets/img/home-1/digital_marketing/aish/6.jpeg"
 
-import dreamvilla1 from "@/assets/img/inner-page/dvm1.jpeg"
-import dreamvilla2 from "@/assets/img/inner-page/dvm2.jpeg"
-import dreamvilla3 from "@/assets/img/inner-page/dvm3.jpeg"
-import dvmweb1 from "@/assets/img/inner-page/dvmweb1.png"
-import dvmweb2 from "@/assets/img/inner-page/dvmweb2.png"
-import dvmweb3 from "@/assets/img/inner-page/dvmweb3.png"
+//Dreamvilla
 
-import srivishakha1 from "@/assets/img/inner-page/srivishakha-1.png"
-import srivishakha2 from "@/assets/img/inner-page/srivishakha-2.png"
-import srivishakha3 from "@/assets/img/inner-page/srivishakha-3.png"
-import srivishakha4 from "@/assets/img/inner-page/vf1.jpeg"
-import srivishakha5 from "@/assets/img/inner-page/vf2.jpeg"
-import srivishakha6 from "@/assets/img/inner-page/vf3.jpeg"
+import dreamvilla1 from "@/assets/img/home-1/digital_marketing/dvm/dvm1.jpeg"
+import dreamvilla2 from "@/assets/img/home-1/digital_marketing/dvm/dvm2.jpeg"
+import dreamvilla3 from "@/assets/img/home-1/digital_marketing/dvm/dvm3.jpeg"
+import dreamvilla4 from "@/assets/img/home-1/digital_marketing/dvm/dvm4.jpeg"
+import dreamvilla5 from "@/assets/img/home-1/digital_marketing/dvm/dvm5.jpeg"
+import dreamvilla6 from "@/assets/img/home-1/digital_marketing/dvm/dvm6.jpeg"
+import dreamvilla7 from "@/assets/img/home-1/digital_marketing/dvm/dvm7.jpeg"
+import dreamvilla8 from "@/assets/img/home-1/digital_marketing/dvm/dvm8.jpeg"
+import dreamvilla9 from "@/assets/img/home-1/digital_marketing/dvm/dvm9.jpeg"
+
+
+import ah01 from "@/assets/img/home-1/digital_marketing/ah/1.jpeg"
+import ah02 from "@/assets/img/home-1/digital_marketing/ah/2.jpeg"
+import ah03 from "@/assets/img/home-1/digital_marketing/ah/3.jpeg"
+import ah04 from "@/assets/img/home-1/digital_marketing/ah/4.jpeg"
+import ah05 from "@/assets/img/home-1/digital_marketing/ah/5.jpeg"
+import ah06 from "@/assets/img/home-1/digital_marketing/ah/6.jpeg"
+
+//ILF posters
+
+import ilf1 from "@/assets/img/home-1/digital_marketing/ilf/1.jpeg"
+import ilf2 from "@/assets/img/home-1/digital_marketing/ilf/2.jpeg"
+import ilf3 from "@/assets/img/home-1/digital_marketing/ilf/3.jpeg"
+import ilf4 from "@/assets/img/home-1/digital_marketing/ilf/4.jpeg"
+import ilf5 from "@/assets/img/home-1/digital_marketing/ilf/5.jpeg"
+import ilf6 from "@/assets/img/home-1/digital_marketing/ilf/6.jpeg"
+import ilf7 from "@/assets/img/home-1/digital_marketing/ilf/7.jpeg"
+import ilf8 from "@/assets/img/home-1/digital_marketing/ilf/8.jpeg"
+import ilf9 from "@/assets/img/home-1/digital_marketing/ilf/9.jpeg"
+import ilf10 from "@/assets/img/home-1/digital_marketing/ilf/10.jpeg"
+import ilf11 from "@/assets/img/home-1/digital_marketing/ilf/11.jpeg"
+import ilf12 from "@/assets/img/home-1/digital_marketing/ilf/12.jpeg"
+import ilf13 from "@/assets/img/home-1/digital_marketing/ilf/13.jpeg"
+import ilf14 from "@/assets/img/home-1/digital_marketing/ilf/14.jpeg"
+import ilf15 from "@/assets/img/home-1/digital_marketing/ilf/15.jpeg"
+import ilf16 from "@/assets/img/home-1/digital_marketing/ilf/16.jpeg"
+import ilf17 from "@/assets/img/home-1/digital_marketing/ilf/17.jpeg"
+import ilf18 from "@/assets/img/home-1/digital_marketing/ilf/18.jpeg"
+import ilf19 from "@/assets/img/home-1/digital_marketing/ilf/19.jpeg"
+
+import svf01 from "@/assets/img/home-1/digital_marketing/svf/1.jpeg"
+import svf02 from "@/assets/img/home-1/digital_marketing/svf/2.jpeg"
+import svf03 from "@/assets/img/home-1/digital_marketing/svf/3.jpeg"
+import svf04 from "@/assets/img/home-1/digital_marketing/svf/4.jpeg"
+import svf05 from "@/assets/img/home-1/digital_marketing/svf/5.jpeg"
+import svf06 from "@/assets/img/home-1/digital_marketing/svf/6.jpeg"
+
+
 
 import coimbatoreproperties1 from "@/assets/img/inner-page/cp1.png"
-import coimbatoreproperties2 from "@/assets/img/inner-page/cp2.png"
-import coimbatoreproperties3 from "@/assets/img/inner-page/cp3.png"
 
-import project_1 from "@/assets/img/home-1/digital_marketing/dm1.png"
 import project_2 from "@/assets/img/home-1/digital_marketing/dm2.png"
 import project_3 from "@/assets/img/home-1/digital_marketing/dm3.png"
 import project_4 from "@/assets/img/home-1/digital_marketing/dm.png"
 import project_5 from "@/assets/img/home-1/digital_marketing/dm4.png"
 import project_6 from "@/assets/img/home-1/digital_marketing/dm5.png"
 import project_7 from "@/assets/img/home-1/digital_marketing/dm6.png"
-import project_8 from "@/assets/img/home-1/ourProjects/mmh.png"
+import project_8 from "@/assets/img/home-1/digital_marketing/dm7.png"
 
-import ah1 from "@/assets/img/inner-page/ah1.png"
-import ah2 from "@/assets/img/inner-page/ah2.png"
-import ah3 from "@/assets/img/inner-page/ah3.png"
-
+//Coimbatore Properties
+import cp2 from "@/assets/img/home-1/digital_marketing/cp/2.jpeg"
+import cp4 from "@/assets/img/home-1/digital_marketing/cp/4.jpeg"
+import cp5 from "@/assets/img/home-1/digital_marketing/cp/5.jpeg"
 
 
 export interface CompanyDeliverableVideo {
@@ -94,13 +124,14 @@ export interface ClientCompanyWork {
     tagline: string;
     description: string;
     services: string[];
-    websiteUrl?: string;
-    appStoreUrl?: string;
-    playStoreUrl?: string;
     videos?: CompanyDeliverableVideo[];
     images?: CompanyDeliverableImage[];
     brochures?: CompanyDeliverableBrochure[];
+    websiteUrl?: string;
+    appStoreUrl?: string;
+    playStoreUrl?: string;
 }
+
 
 export const clientCompaniesWork: ClientCompanyWork[] = [
     {
@@ -109,133 +140,84 @@ export const clientCompaniesWork: ClientCompanyWork[] = [
         logo: logoMMH,
         mainImage: project_4,
         tagline: "Premium plot bookings and real estate overview.",
-        description: "For Make My Homes, we built a comprehensive digital footprint. We designed and developed their responsive web application and cross-platform mobile apps, launched multi-channel lead-generation ad campaigns on Meta and Google, crafted stunning digital brochures, and produced engaging short-form video reels highlighting premium property sites.",
+        description: `Make My Homes is a premier real estate brand specializing in premium DTCP-approved plots, luxury villas, and gated communities across prime locations like Coimbatore and Sathy NH. They are dedicated to helping families and investors find their perfect home or investment property with transparent and secure real estate transactions.
+
+To elevate their online presence and drive high-quality property inquiries, we implemented a comprehensive digital marketing strategy. This included highly-targeted performance advertising across Meta and Google, dynamic social media management, and the creation of visually stunning video reels showcasing luxury villa walkthroughs and site developments. Furthermore, our team designed premium print brochures, optimized their digital platforms through dedicated web and app development, and engaged prospective buyers with compelling graphic design.
+
+As a result, Make My Homes experienced a significant surge in brand visibility, successfully launching multiple site projects, accelerating property bookings, and building a trusted community of prospective homeowners.`,
         services: ["Web Development", "App Development", "Digital Marketing Ads", "Graphic Design", "Video Editing (Reels)", "Brochure Design"],
-        websiteUrl: "https://makemyhomes.com/",
-        playStoreUrl: "https://play.google.com/store/apps/details?id=com.app.makemyhomes&hl=en_IN",
-        appStoreUrl: "https://apps.apple.com/in/app/make-my-homes/id6741757789",
         videos: [
             {
                 title: "Luxury Villa Tour Reel",
                 videoUrl: "https://youtu.be/69UFf6_rpwg?si=YXjsZ2ZMrkfY4HFD",
-                duration: "0:25",
+                duration: "6:25",
                 description: "Short Instagram Reel showcasing the interior layout, finishes, and premium specifications of a completed villa."
             },
             {
                 title: "Site Launch Event Promo",
                 videoUrl: "https://youtu.be/vJfCtio1TK4?si=2_KZRRo9f2JlteSR",
-                duration: "0:30",
+                duration: "5:30",
                 description: "Stunning aerial drone walkthrough detailing the project layout, main gate arches, and ready-to-build roads."
+            },
+            {
+                title: "Exclusive Villa interiors",
+                videoUrl: "https://youtu.be/NJP9agrznKM?si=K3B2E-UtbCOO9JqX",
+                duration: "3:36",
+                description: "Interior design and interior architecture showcase of a 3BHK villa including living room, dinning area, bedrooms, kitchen, and more."
+            },
+            {
+                title: "Premium 3BHK Villa Tour",
+                videoUrl: "https://youtu.be/0MQnyEEVMoE?si=H_xWFFcQGPMSqELz",
+                duration: "3:00",
+                description: "Low Budget DTCP Plots near Annur-Sirumugai | 2.75 Cents Just ₹7 Lakhs | Diwali Offer ₹50,000 Gifts."
+            },
+            {
+                title: "3BHK Villa in Vadavalli | 40’ Road",
+                videoUrl: "https://youtu.be/g3Zym47bQlY?si=pirwTfdgO-eNgJyp",
+                duration: "1:55",
+                description: "Aadi Offer Alert: Premium DTCP Plots @ ₹4.75L Onwards| Near Sathy NH, Coimbatore | Don’t Miss Out!"
+            },
+            {
+                title: "",
+                videoUrl: "https://youtu.be/69UFf6_rpwg?si=YXjsZ2ZMrkfY4HFD",
+                duration: "1:00",
+                description: "Short Instagram Reel showcasing the interior layout, finishes, and premium specifications of a completed villa."
+            },
+            {
+                title: "Premium DTCP Plots & Villas Near Sathy NH – Just 2 KM from Highway! | Coimbatore | Best Investment",
+                videoUrl: "https://youtu.be/qSj2EG4nIP8?si=gDXtB2XpPRJqY9F9",
+                duration: "1:55",
+                description: "Premium DTCP Plots & Villas Near Sathy NH – Just 2 KM from Highway! | Coimbatore | Best Investment."
+            },
+            {
+                title: "100 % Complete & Ready DTCP Plots | Mettupalayam Road | Sathy NH Junction | 2 KM from Highway",
+                videoUrl: "https://youtu.be/TIYA2Sfh6-4?si=uaVO9uKeAz_tVSsQ",
+                duration: "2:52",
+                description: "100 % Complete & Ready DTCP Plots | Mettupalayam Road | Sathy NH Junction | 2 KM from Highway"
             }
         ],
         images: [
             { title: "Real Estate Social Post", img: mmh1, category: "Social Media Post" },
-            { title: "Site Location Grid Banner", img: mmh2, category: "Google Ads Banner" },
-            { title: "Amenities & Highlights Graphic", img: mmh3, category: "Graphic Design" },
-            { title: "Mobile App Interface Design", img: mmh4, category: "App Screen" },
-            { title: "Website Plot Booking Portal", img: mmh5, category: "Web Screen" },
-            { title: "Interactive Site Layout Plan", img: mmh6, category: "Web Screen" }
+            { title: "Real Estate Social Post", img: mmh3, category: "Social Media Post" },
+            { title: "Real Estate Social Post", img: mmh4, category: "Social Media Post" },
+            { title: "Real Estate Social Post", img: mmh5, category: "Social Media Post" },
+            { title: "Real Estate Social Post", img: mmh6, category: "Social Media Post" },
+            { title: "Real Estate Social Post", img: mmh7, category: "Social Media Post" }
         ],
         brochures: [
             {
-                title: "MMH Premium Plots Brochure",
-                downloadUrl: "#",
-                previewImg: mmh1,
-                description: "Exclusive brochure featuring certified plot layout designs, location key points, and developer project details."
+                title: "Coco Bliss Brochure",
+                downloadUrl: "/assets/pdf/Coco Bliss Brouchre(reworL).pdf",
+                previewImg: cocobliss1,
+                description: "Click to view details of the project Coco Bliss: Gated community with premium DTCP-approved plots in Karamadai, Coimbatore, offering tranquil living within a secure, family-friendly environment. "
+            },
+            {
+                title: "Iva Brochure",
+                downloadUrl: "/assets/pdf/Iva Broucher.pdf",
+                previewImg: iva1,
+                description: "Click to view details of the project Iva: Gated community with premium DTCP-approved plots."
             }
         ]
-    },
-    // {
-    //     id: "syncr-crm",
-    //     name: "Syncr CRM",
-    //     logo: logoSyncr,
-    //     mainImage: mmh4,
-    //     tagline: "The ultimate CRM & lead management system for real estate.",
-    //     description: "Syncr CRM required a high-performance system for tech-savvy real estate brokers. We developed their visual identity, built cross-platform mobile apps for field agents, designed marketing graphics, ran targeted search engine marketing (SEM) campaigns, and produced instructional screen-share reels showing pipeline automation.",
-    //     services: ["Web Development", "App Development", "Digital Marketing", "Graphic Design", "Video Tutorials"],
-    //     websiteUrl: "https://syncr.in/",
-    //     playStoreUrl: "https://play.google.com/store/apps/details?id=com.syncr.app",
-    //     appStoreUrl: "https://apps.apple.com/in/app/syncr-real-estate-crm/id6754961843",
-    //     videos: [
-    //         {
-    //             title: "Syncr CRM App Introduction",
-    //             videoUrl: "https://player.vimeo.com/external/409205364.sd.mp4?s=d00d20d481fb92b8d00346c8fe77ec42a03332eb&profile_id=165&oauth2_token_id=57447761",
-    //             duration: "0:45",
-    //             description: "Premium product promo reel highlighting user interface, contact management, and WhatsApp automation features."
-    //         },
-    //         {
-    //             title: "Sales Pipeline Automation Demo",
-    //             videoUrl: "https://player.vimeo.com/external/370331493.sd.mp4?s=fb146db7a2db12be213b190f7797746401037346&profile_id=165&oauth2_token_id=57447761",
-    //             duration: "0:35",
-    //             description: "Detailed dashboard tutorial demonstrating drag-and-drop deals, lead scoring, and automated task reminders."
-    //         }
-    //     ],
-    //     images: [
-    //         { title: "Lead Dashboard Analytics", img: syncr1, category: "App Screen" },
-    //         { title: "CRM Mobile Lead Management", img: syncr2, category: "App Screen" },
-    //         { title: "Sales Pipeline Screen", img: syncr3, category: "App Screen" },
-    //         { title: "CRM Web Landing Page", img: syncrweb1, category: "Web Screen" },
-    //         { title: "Admin Panel Analytics", img: syncrweb2, category: "Web Screen" }
-    //     ],
-    //     brochures: [
-    //         {
-    //             title: "Syncr Product Architecture Guide",
-    //             downloadUrl: "#",
-    //             previewImg: syncrweb1,
-    //             description: "Detailed system architecture, CRM safety features, data handling protocols, and team subscription structures."
-    //         }
-    //     ]
-    // },
-    {
-        id: "2deal-ecommerce",
-        name: "2Deal",
-        logo: logo2Deal,
-        mainImage: project_2,
-        tagline: "A comprehensive online marketplace connecting buyers and sellers.",
-        description: "For 2Deal Ecommerce (Malaysia), we ran dynamic social media ad campaigns targeting online consumers, designed custom promotional banners for campaigns and flash sales, and optimized app store descriptions alongside App Store and Google Play promotional creatives.",
-        services: ["App Development", "Digital Marketing Ads", "Graphic Design", "Social Media Management"],
-        websiteUrl: "https://2deal.my/",
-        playStoreUrl: "https://play.google.com/store/apps/details?id=com.twodeal.consumer&hl=en_IN",
-        appStoreUrl: "https://apps.apple.com/in/app/2deal/id6747821455",
-        videos: [
-            {
-                title: "2Deal Flash Sale Promo Reel",
-                videoUrl: "https://player.vimeo.com/external/384761655.sd.mp4?s=38bd50d03534b8c9d2f3cd251cf4402a5c545f47&profile_id=165&oauth2_token_id=57447761",
-                duration: "0:20",
-                description: "Highly energetic mobile shopping reel highlighting exclusive discounts, vouchers, and secure checkout screens."
-            }
-        ],
-        images: [
-            { title: "Discount Promo Graphic", img: ecommerce1, category: "Social Media Post" },
-            { title: "App Catalog Navigation View", img: ecommerce2, category: "App Screen" },
-            { title: "Secure Checkout Flow Design", img: ecommerce3, category: "App Screen" }
-        ],
-        brochures: [
-            {
-                title: "2Deal Merchant Onboarding Handbook",
-                downloadUrl: "#",
-                previewImg: ecommerce1,
-                description: "Sellers guide detailing commission structures, logistics support, payout schedules, and dashboard features."
-            }
-        ]
-    },
-    {
-        id: "indian-ladies-fashion",
-        name: "Indian Ladies Fashion",
-        logo: logoILF,
-        mainImage: project_3,
-        tagline: "Ethnic and contemporary Indian fashion at your fingertips.",
-        description: "Indian Ladies Fashion needed to reach ethnic wear shoppers. We ran highly visual shopping campaigns on Meta (Instagram & Facebook Shopping), designed lookbook graphics for holiday catalogs, produced interactive reels showing fabric details, and optimized e-commerce product layouts.",
-        services: ["Web Development", "Digital Marketing Ads", "Graphic Design", "Video Editing (Reels)", "E-Commerce Strategy"],
-        websiteUrl: "https://indianladiesfashion.com/",
-
-        images: [
-            { title: "E-commerce Storefront Mockup", img: indianladiesfashion4, category: "Web Screen" },
-            { title: "New Arrivals Collection Banner", img: indianladiesfashion1, category: "Web Screen" },
-            { title: "Festive Collection Promo Graphic", img: indianladiesfashion2, category: "Web Screen" },
-            { title: "Sizing Guide & Fit Infographic", img: indianladiesfashion3, category: "Web Screen" },
-        ],
-
     },
     {
         id: "dream-villa-makers",
@@ -243,63 +225,134 @@ export const clientCompaniesWork: ClientCompanyWork[] = [
         logo: logoDVM,
         mainImage: project_5,
         tagline: "Building your dream home, one villa at a time.",
-        description: "Dream Villa Makers constructs luxury housing spaces. We designed and developed their web portal with integrated virtual tours, created high-quality video walkthroughs, designed high-end print brochures for NRI investors, and managed targeted local search campaigns.",
+        description: `Dream Villa Makers stands out as a trusted name in luxury residential development, dedicated to crafting dream homes with exquisite architectural details, modern amenities, and secure gated community features. From premium villas to highly sought-after DTCP-approved plots, they focus on delivering high-quality living experiences that exceed customer expectations.
+
+To capture the essence of their premium properties and drive highly qualified real estate leads, we executed a highly targeted digital marketing strategy. Our approach heavily utilized high-end video production, creating immersive drone and walkthrough reels that highlighted luxurious home interiors and expansive community landscapes. Combined with data-driven social media ad campaigns, we were able to reach discerning home buyers and investors.
+
+Beyond performance marketing, our team provided end-to-end creative support including custom web and app development, sleek graphic designs, and professional brochure designs. This integrated digital presence significantly amplified their brand authority, maximized property inquiries, and accelerated sales across their premium residential projects.`,
         services: ["Web Development", "App Development", "Graphic Design", "Video Production", "Brochure Design"],
-        websiteUrl: "https://www.dreamvillamakers.com/",
-        playStoreUrl: "https://play.google.com/store/apps/details?id=com.dvm.dvmapp",
-        appStoreUrl: "https://apps.apple.com/in/app/dream-villa-makers/id6755949325",
         videos: [
             {
                 title: "Luxury Villa Walkthrough",
-                videoUrl: "https://player.vimeo.com/external/355355026.sd.mp4?s=25d978a3c8fb23e59048a17a7e6b0631fb94ff19&profile_id=165&oauth2_token_id=57447761",
-                duration: "0:50",
+                videoUrl: "https://youtu.be/20vMiwzIO5s?si=WDEGDCMN1UGRPqe2",
+                duration: "3:50",
                 description: "Beautiful drone and walkthrough video showcasing gated villa community arches, clubhouses, and home interiors."
+            },
+            {
+                title: "Aishwaryam Grande🌟 DTCP RERA approved plots @ just 5.65L per cent 😮! Land for sale in Coimbatore",
+                videoUrl: "https://youtu.be/awT_XppZoPo?si=0-Ng7jQRqu8t9kML",
+                duration: "1:00",
+                description: "Aishwaryam Grande🌟 DTCP RERA approved plots @ just 5.65L per cent 😮! Land for sale in Coimbatore "
             }
         ],
         images: [
-            { title: "Luxury Villa Exterior Rendering", img: dreamvilla1, category: "App Screen" },
-            { title: "Modern Kitchen Layout Render", img: dreamvilla2, category: "App Screen" },
-            { title: "Site Layout Interactive Map", img: dreamvilla3, category: "App Screen" },
-            { title: "DVM Property Web Portal", img: dvmweb1, category: "Web Screen" },
-            { title: "Villa Booking Interface Screen", img: dvmweb2, category: "Web Screen" },
-            { title: "Investor Client Portal Dashboard", img: dvmweb3, category: "Web Screen" }
+            { title: "Luxury Villa Exterior Rendering", img: dreamvilla1, category: "Social Media Post" },
+            { title: "Modern Kitchen Layout Render", img: dreamvilla2, category: "Social Media Post" },
+            { title: "Site Layout Interactive Map", img: dreamvilla3, category: "Social Media Post" },
+            { title: "Luxury Villa Exterior Rendering", img: dreamvilla4, category: "Social Media Post" },
+            { title: "Premium Amenities", img: dreamvilla5, category: "Social Media Post" },
+            { title: "Posted Ad", img: dreamvilla6, category: "Social Media Post" },
+            { title: "Posted Ad", img: dreamvilla7, category: "Social Media Post" },
+            { title: "Posted Ad", img: dreamvilla8, category: "Social Media Post" },
+            { title: "Posted Ad", img: dreamvilla9, category: "Social Media Post" },
+
         ],
-        // brochures: [
-        //     {
-        //         title: "DVM Luxury Gated Villas Catalog",
-        //         downloadUrl: "#",
-        //         previewImg: dreamvilla1,
-        //         description: "Exclusive print brochure featuring architectural floor plans, landscaping maps, electrical blueprints, and amenities list."
-        //     }
-        // ]
+
     },
     {
-        id: "sri-vishakha-fields",
-        name: "Sri Vishakha Fields",
+        id: "sri-vishakha-fields-new",
+        name: "Sri Vishakha fields",
         logo: logoSVF,
         mainImage: project_6,
-        tagline: "Premium plot bookings and real estate overview.",
-        description: "Sri Vishakha Fields features premium gated land plots. We built their interactive plot-status website, designed layout blueprints for sales teams, and ran hyper-targeted regional Facebook and Google lead generation ads.",
-        services: ["Web Development", "App Development", "Graphic Design", "Digital Marketing Ads", "Brochure Design"],
-        websiteUrl: "https://srivishakhafields.com/",
-        playStoreUrl: "https://play.google.com/store/apps/details?id=com.vishakha.app",
-        appStoreUrl: "https://apps.apple.com/us/app/sri-vishakha-fields/id6759153000",
-        images: [
-            { title: "Interactive Land Layout Screen", img: srivishakha1, category: "Web Screen" },
-            { title: "Plot Status Selection Screen", img: srivishakha2, category: "Web Screen" },
-            { title: "Project Highlights Infographic", img: srivishakha3, category: "Web Screen" },
-            { title: "Plot Dimensions Site Chart", img: srivishakha4, category: "App Screen" },
-            { title: "Social Media Campaign Creative", img: srivishakha5, category: "App Screen" },
-            { title: "Customer Success Banner Post", img: srivishakha6, category: "App Screen" }
+        tagline: "Ready DTCP plots for Sale in Coimbatore at affordable prices!",
+        description: `Sri Vishakha Fields is a prominent real estate developer offering ready-to-build, DTCP and RERA approved plots in highly desirable locations across Coimbatore. With projects like "The Oak Tree" and "The Garden City," they provide affordable, premium gated communities that cater to both families looking for their dream home and investors seeking long-term value.
+
+To maximize their project visibility and accelerate plot sales, we developed a comprehensive, multi-channel digital marketing strategy. We deployed highly optimized lead generation campaigns across digital platforms, driving substantial traffic from prospective buyers. Our creative team produced engaging video tutorials and cinematic site walkthroughs that effectively showcased the ready-to-build infrastructure, wide roads, and premium amenities of their gated communities.
+
+In addition to performance marketing, we completely revamped their online presence with custom web and app development, ensuring a seamless property browsing experience. Coupled with eye-catching graphic design for social media and advertising, our integrated efforts established Sri Vishakha Fields as a top choice for affordable, secure real estate investments in the region.`,
+        services: ["Web Development", "App Development", "Digital Marketing", "Graphic Design", "Video Tutorials"],
+        videos: [
+            {
+                title: "The Oak Tree – Premium Gated Community",
+                videoUrl: "https://youtu.be/9it5NsXMVeA?si=uA66paMf5JWgDHLr",
+                duration: "1:00",
+                description: "The Oak Tree – Premium Gated Community with DTCP Approved plots and 3 BHK Villas at affordable prices"
+            },
+            {
+                title: "The Garden City – Kovilpalayam | Gated Community DTCP & RERA Plots",
+                videoUrl: "https://youtu.be/vPY6EaXJuDU?si=gQyGL2EncS_Xy8u9",
+                duration: "1:07",
+                description: "The Garden City – Kovilpalayam | Gated Community DTCP & RERA Plots | 40’ Road"
+            }
         ],
-        // brochures: [
-        //     {
-        //         title: "Sri Vishakha Layout Map & Plan",
-        //         downloadUrl: "#",
-        //         previewImg: srivishakha1,
-        //         description: "Certified layout maps showing plot sizes, road dimensions, local park allocations, and amenities overview."
-        //     }
-        // ]
+        images: [
+            { title: "Posted Ad", img: svf01, category: "Social Media Post" },
+            { title: "Posted Ad", img: svf02, category: "Social Media Post" },
+            { title: "Posted Ad", img: svf03, category: "Social Media Post" },
+            { title: "Posted Ad", img: svf04, category: "Social Media Post" },
+            { title: "Posted Ad", img: svf05, category: "Social Media Post" },
+            { title: "Posted Ad", img: svf06, category: "Social Media Post" },
+        ],
+    },
+    {
+        id: "sri-aishwariyams",
+        name: "SRI AISHWARIYAM",
+        logo: logoAishwariyams,
+        mainImage: project_8,
+        tagline: "1 Crore+ Product Sales Achieved Through Trusted Natural Wellness & Powerful Digital Marketing",
+        description: `SRI AISHWARIYAM has emerged as a trusted name in natural wellness, helping people embrace healthier lifestyles through carefully crafted herbal and organic products. Built on the belief of "Organic Healing, No Side Effects, Nature's Way to Wellness," the brand has successfully connected with customers seeking safe, natural, and effective wellness solutions.
+
+Through a comprehensive digital marketing strategy that included social media marketing, performance advertising, content creation, brand awareness campaigns, customer engagement initiatives, and lead generation activities, SRI AISHWARIYAM achieved a remarkable milestone of ₹1 Crore + in product sales.Our digital- first approach strengthened brand visibility, increased customer trust, expanded market reach, and drove consistent revenue growth across multiple online channels.
+
+From creating compelling brand stories and high - converting creatives to managing targeted advertising campaigns and customer engagement strategies, we helped transform SRI AISHWARIYAM into a recognized wellness brand with a growing customer community.The success reflects the perfect combination of quality products, strategic marketing, and data - driven campaign optimization.`,
+        services: ["Digital Marketing Ads", "Graphic Design", "Social Media Management"],
+
+        images: [
+            { title: "Posted Ad", img: aish1, category: "Social Media Post" },
+            { title: "Posted Ad", img: aish2, category: "Social Media Post" },
+            { title: "Posted Ad", img: aish3, category: "Social Media Post" },
+            { title: "Posted Ad", img: aish4, category: "Social Media Post" },
+            { title: "Posted Ad", img: aish5, category: "Social Media Post" },
+            { title: "Posted Ad", img: aish6, category: "Social Media Post" },
+
+        ],
+
+    },
+    {
+        id: "indian-ladies-fashion",
+        name: "Indian Ladies Fashion",
+        logo: logoILF,
+        mainImage: project_3,
+        tagline: "Ethnic and contemporary Indian fashion at your fingertips.",
+        description: `Indian Ladies Fashion is a premier destination for ethnic and contemporary clothing, bringing the rich heritage and modern elegance of Indian fashion directly to consumers. They offer a meticulously curated collection that appeals to women seeking high-quality, culturally authentic, and stylish apparel for everyday wear and special occasions.
+
+To scale their retail operations and build a dominant online presence, we implemented a robust e-commerce and digital marketing strategy. Our campaigns heavily leveraged Meta Ads and targeted social media marketing, producing highly engaging visual content and short-form video reels that resonated with their target audience. Our custom graphic design team developed stunning poster ads and promotional creatives that highlighted their unique collections and seasonal offers.
+
+Through the seamless integration of custom web development and an aggressive performance marketing approach, we significantly increased their online sales and website traffic. This end-to-end digital transformation not only boosted immediate revenue but also fostered long-term brand loyalty within the highly competitive online fashion market.`,
+        services: ["Web Development", "Digital Marketing Ads", "Graphic Design", "Video Editing (Reels)", "E-Commerce Strategy"],
+
+        images: [
+            { title: "Poster Ads", img: ilf1, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf2, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf3, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf4, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf5, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf6, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf7, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf8, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf9, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf10, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf11, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf12, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf13, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf14, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf15, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf16, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf17, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf18, category: "Social Media Post" },
+            { title: "Poster Ads", img: ilf19, category: "Social Media Post" },
+        ],
+
     },
     {
         id: "coimbatore-properties",
@@ -307,16 +360,39 @@ export const clientCompaniesWork: ClientCompanyWork[] = [
         logo: logoCP,
         mainImage: project_7,
         tagline: "Premium plot bookings and real estate overview.",
-        description: "For Coimbatore Properties, we created modern lead generation strategies, built their landing pages, designed Google ad creatives, and crafted high-quality property print brochures to distribute to walk-in investors.",
+        description: `Coimbatore Properties is a premier real estate investment firm specializing in high-growth locations across Coimbatore. With a curated selection of DTCP-approved plots in prime areas such as Saravanampatti and Kovilpalayam, they provide investors with secure, well-planned communities featuring wide roads and essential amenities.
+
+To capitalize on the increasing demand for quality real estate, we implemented a comprehensive, multi-channel digital marketing strategy. Our primary focus was on high-intent lead generation through performance advertising campaigns, ensuring that every prospective buyer found their way to Coimbatore Properties.
+
+To support their sales team and enhance investor confidence, we designed a suite of professional marketing collateral. This included visually striking Google ad creatives that captured attention online, as well as premium, detailed print brochures that served as essential resources for walk-in investors.
+
+Through this integrated approach, we successfully amplified their market reach, increased qualified leads, and accelerated property transactions, solidifying Coimbatore Properties' position as a trusted real estate partner.`,
         services: ["Web Development", "App Development", "Graphic Design", "Digital Marketing Ads", "Brochure Design"],
-        websiteUrl: "https://coimbatoreproperties.org/",
-        playStoreUrl: "https://play.google.com/store/apps/details?id=com.cpapp.prop&hl=en_IN",
-        appStoreUrl: "https://apps.apple.com/in/app/coimbatore-properties/id6741788886",
-        videos: [],
+        videos: [
+            {
+                title: "Saravanampatti - Kurumbapalayam, 100 Mtrs From Sathy Main Road, Premium DTCP Plots & Villas",
+                videoUrl: "https://youtu.be/xUzFCFf9Kgc?si=AzohdsrDSM5NFxcT",
+                duration: "2:55",
+                description: "Saravanampatti - Kurumbapalayam, 100 Mtrs From Sathy Main Road, Premium DTCP Plots & Villas"
+            },
+            {
+                title: "Saravanampatti - Kovilpalayam, Premium DTCP Plots & Villas, Gated Community Layout",
+                videoUrl: "https://youtu.be/YXGjpWL2CFU?si=XixUOdY2J43RS6wV",
+                duration: "2:00",
+                description: "Saravanampatti - Kovilpalayam, Premium DTCP Plots & Villas, Gated Community Layout"
+            },
+            {
+                title: "Shorts | Saravanampatti - Kurumbapalayam | 100 mtrs From Sathy NH",
+                videoUrl: "https://youtube.com/shorts/vXzpIxPSHas?si=R1qUI-hej0ljRrIB",
+                duration: "0:26",
+                description: "Saravanampatti - Kurumbapalayam, 100 mtrs From Sathy NH, Premium Dtcp Plots & Villas For Sale"
+            }
+        ],
         images: [
-            { title: "Properties Search Portal", img: coimbatoreproperties1, category: "Web Screen" },
-            { title: "Mobile App Real Estate Listings", img: coimbatoreproperties2, category: "App Screen" },
-            { title: "Lead Form Screen", img: coimbatoreproperties3, category: "Web Screen" }
+            { title: "Coimbatore Properties Layout", img: cp2, category: "Graphic Design" },
+            { title: "Coimbatore Properties Layout", img: cp4, category: "Graphic Design" },
+            { title: "Coimbatore Properties Layout", img: cp5, category: "Graphic Design" },
+
         ],
         brochures: [
             {
@@ -333,14 +409,39 @@ export const clientCompaniesWork: ClientCompanyWork[] = [
         logo: logoAnanya,
         mainImage: logoAnanya,
         tagline: "Event management and planning services.",
-        description: "Ananya Homes is an event management company that specializes in planning and organizing various events. We provide comprehensive event management services including event planning, event coordination, and event promotion.",
+        description: `Ananya Homes is a distinguished event management company based in Coimbatore, specializing in crafting exceptional, tailor-made experiences for a wide range of events. Their services encompass both private celebrations and corporate gatherings, ensuring every occasion is executed with precision, creativity, and attention to detail.
+
+To elevate their brand presence and connect with a broader audience, we implemented a dynamic digital marketing strategy. This included developing engaging social media campaigns and producing eye-catching graphic designs that highlighted the quality and uniqueness of their event planning services. Additionally, we created professional web and mobile app interfaces that streamlined the process for clients to discover and book their event solutions.
+
+Through a combination of targeted digital promotion and polished creative assets, we successfully increased Ananya Homes' visibility, generated valuable leads, and reinforced their reputation as a premier event management partner in Coimbatore.`,
         services: ["Graphic Design", "Social Media Marketing", "Brochure Design", "Web Development"],
-        websiteUrl: "https://www.ananyahomes.com/",
-        videos: [],
+        videos: [
+            {
+                title: "ROYAL VARISHTAA | Premium DTCP Plots",
+                videoUrl: "https://youtube.com/shorts/m8-g64PSCS8?si=pQAFvVh0_QcmMWeO",
+                duration: "0:20",
+                description: "ROYAL VARISHTAA | Premium DTCP Plots"
+            }
+        ],
         images: [
-            { title: "Banner Screens", img: ah1, category: "Web Screen" },
-            { title: "Property Screens", img: ah2, category: "Web Screen" },
-            { title: "About", img: ah3, category: "Web Screen" },
+            {
+                title: "Poster Ads", img: ah01, category: "Social Media Post"
+            },
+            {
+                title: "Poster Ads", img: ah02, category: "Social Media Post"
+            },
+            {
+                title: "Poster Ads", img: ah03, category: "Social Media Post"
+            },
+            {
+                title: "Poster Ads", img: ah04, category: "Social Media Post"
+            },
+            {
+                title: "Poster Ads", img: ah05, category: "Social Media Post"
+            },
+            {
+                title: "Poster Ads", img: ah06, category: "Social Media Post"
+            }
         ],
         brochures: []
     }

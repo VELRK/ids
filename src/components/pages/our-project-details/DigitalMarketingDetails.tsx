@@ -1,10 +1,13 @@
 "use client"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { DataType } from "@/data/OurProjectData"
 import { clientCompaniesWork, CompanyDeliverableImage } from "@/data/DigitalMarketingData"
 import ReactPlayer from "react-player"
+import Lightbox from "yet-another-react-lightbox"
+import "yet-another-react-lightbox/styles.css"
+import Zoom from "yet-another-react-lightbox/plugins/zoom"
 
 interface Props {
     project: DataType;
@@ -14,20 +17,40 @@ interface Props {
 
 const DigitalMarketingDetails = ({ project, prevId, nextId }: Props) => {
     // Current active client company state (defaults to Make My Homes)
-    const [activeCompanyId, setActiveCompanyId] = useState<string>(
-        clientCompaniesWork.some(c => c.id === project.client) ? project.client : "make-my-homes"
-    )
+    const initialCompanyId = clientCompaniesWork.some(c => c.id === project.client) ? project.client : "make-my-homes";
+    const [activeCompanyId, setActiveCompanyId] = useState<string>(initialCompanyId)
 
     // Sub-tab selection state: "videos" | "images" | "brochures"
-    const [activeTab, setActiveTab] = useState<"videos" | "images" | "brochures">("videos")
+    const initialCompany = clientCompaniesWork.find(c => c.id === initialCompanyId) || clientCompaniesWork[0];
+    const [activeTab, setActiveTab] = useState<"videos" | "images" | "brochures">(
+        (initialCompany.images || []).length > 0 ? "images" : (initialCompany.videos || []).length > 0 ? "videos" : "brochures"
+    )
 
     // Lightbox states for video and image zoom
     const [activeVideoUrl, setActiveVideoUrl] = useState<string | null>(null)
     const [activeVideoTitle, setActiveVideoTitle] = useState<string>("")
-    const [zoomedImage, setZoomedImage] = useState<CompanyDeliverableImage | null>(null)
+    const [lightboxIndex, setLightboxIndex] = useState<number>(-1)
 
     // Brochure download notification state
     const [downloadNotification, setDownloadNotification] = useState<string | null>(null)
+
+    // Hydration mismatch fix for ReactPlayer
+    const [isMounted, setIsMounted] = useState(false)
+    useEffect(() => {
+        setIsMounted(true)
+    }, [])
+
+    // Prevent body scroll when overlays/lightboxes are active
+    useEffect(() => {
+        if (activeVideoUrl || lightboxIndex >= 0) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [activeVideoUrl, lightboxIndex]);
 
     // Find active company details
     const activeCompany = clientCompaniesWork.find(c => c.id === activeCompanyId) || clientCompaniesWork[0]
@@ -36,14 +59,22 @@ const DigitalMarketingDetails = ({ project, prevId, nextId }: Props) => {
     const brochures = activeCompany.brochures || []
 
     // Trigger brochure download feedback
-    const handleDownload = (title: string) => {
-        setDownloadNotification(`Preparing to download: ${title}...`)
-        setTimeout(() => {
-            setDownloadNotification(`Success! ${title} downloaded.`)
+    const handleDownload = (title: string, downloadUrl: string) => {
+        if (!downloadUrl || downloadUrl === "#") {
+            setDownloadNotification(`No PDF available for ${title}.`)
             setTimeout(() => {
                 setDownloadNotification(null)
             }, 3000)
-        }, 1200)
+            return
+        }
+
+        // Open immediately to avoid popup blockers
+        window.open(downloadUrl, '_blank')
+
+        setDownloadNotification(`Opening ${title}...`)
+        setTimeout(() => {
+            setDownloadNotification(null)
+        }, 3000)
     }
 
     return (
@@ -67,9 +98,9 @@ const DigitalMarketingDetails = ({ project, prevId, nextId }: Props) => {
 
                 {/* Main Client Details & Showcase Card */}
                 <div className="active-company-card mb-5 wow fadeInUp" data-wow-delay=".4s">
-                    <div className="row g-4 align-items-center mb-4">
+                    <div className="row g-4 mb-4">
                         {/* Company Logo and Text */}
-                        <div className="col-lg-7">
+                        <div className="col-lg-12">
                             <div className="company-header d-flex align-items-center gap-3 mb-3">
                                 <div className="company-logo-badge">
                                     <Image
@@ -99,63 +130,12 @@ const DigitalMarketingDetails = ({ project, prevId, nextId }: Props) => {
                                 ))}
                             </div>
                         </div>
-
-                        {/* Action Portal Links for Websites/Apps */}
-                        <div className="col-lg-5 text-lg-end">
-                            <div className="company-links-panel d-flex flex-column gap-3 justify-content-lg-end align-items-lg-end">
-                                <span className="links-panel-title">Launch Deliverables:</span>
-                                <div className="d-flex flex-wrap gap-2 justify-content-lg-end">
-                                    {activeCompany.websiteUrl && (
-                                        <a
-                                            href={activeCompany.websiteUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="launch-btn web-btn"
-                                        >
-                                            <i className="fa-solid fa-globe"></i>
-                                            <span>Visit Website</span>
-                                        </a>
-                                    )}
-                                    {activeCompany.appStoreUrl && (
-                                        <a
-                                            href={activeCompany.appStoreUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="launch-btn app-btn"
-                                        >
-                                            <i className="fa-brands fa-apple"></i>
-                                            <span>App Store</span>
-                                        </a>
-                                    )}
-                                    {activeCompany.playStoreUrl && (
-                                        <a
-                                            href={activeCompany.playStoreUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="launch-btn play-btn"
-                                        >
-                                            <i className="fa-brands fa-google-play"></i>
-                                            <span>Google Play</span>
-                                        </a>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <hr className="divider mb-4" />
 
                     {/* Sub-Tabs Selector for Videos, Graphics, and Brochures */}
                     <div className="showcase-tabs-bar mb-4">
-                        {videos.length > 0 && (
-                            <button
-                                className={`showcase-tab-item ${activeTab === "videos" ? "active" : ""}`}
-                                onClick={() => setActiveTab("videos")}
-                            >
-                                <i className="fa-solid fa-play me-2"></i>
-                                Video Reels & Promos ({videos.length})
-                            </button>
-                        )}
                         {images.length > 0 && (
                             <button
                                 className={`showcase-tab-item ${activeTab === "images" ? "active" : ""}`}
@@ -163,6 +143,15 @@ const DigitalMarketingDetails = ({ project, prevId, nextId }: Props) => {
                             >
                                 <i className="fa-solid fa-image me-2"></i>
                                 Graphic Design & Ads ({images.length})
+                            </button>
+                        )}
+                        {videos.length > 0 && (
+                            <button
+                                className={`showcase-tab-item ${activeTab === "videos" ? "active" : ""}`}
+                                onClick={() => setActiveTab("videos")}
+                            >
+                                <i className="fa-solid fa-play me-2"></i>
+                                Video Reels & Promos ({videos.length})
                             </button>
                         )}
                         {brochures.length > 0 && (
@@ -191,18 +180,20 @@ const DigitalMarketingDetails = ({ project, prevId, nextId }: Props) => {
                                             }}
                                         >
                                             <div className="video-card-preview">
-                                                <ReactPlayer
-                                                    src={video.videoUrl}
-                                                    width="100%"
-                                                    height="100%"
-                                                    style={{ position: "absolute", top: 0, left: 0, pointerEvents: "none" }}
+                                                {isMounted && (
+                                                    <ReactPlayer
+                                                        src={video.videoUrl}
+                                                        width="100%"
+                                                        height="100%"
+                                                        style={{ position: "absolute", top: 0, left: 0, pointerEvents: "none" }}
 
 
-                                                    onClick={(e) => {
-                                                        e.preventDefault()
-                                                        e.stopPropagation()
-                                                    }}
-                                                />
+                                                        onClick={(e) => {
+                                                            e.preventDefault()
+                                                            e.stopPropagation()
+                                                        }}
+                                                    />
+                                                )}
                                                 {/* Backdrop overlay decoration mimicking a phone screen / player */}
                                                 <div className="video-glow-effect"></div>
                                                 {/* <div className="video-play-overlay">
@@ -229,7 +220,7 @@ const DigitalMarketingDetails = ({ project, prevId, nextId }: Props) => {
                                     <div key={idx} className="col-sm-6 col-md-4 col-lg-3">
                                         <div
                                             className="graphic-showcase-card"
-                                            onClick={() => setZoomedImage(image)}
+                                            onClick={() => setLightboxIndex(idx)}
                                         >
                                             <div className="graphic-img-container">
                                                 <Image
@@ -280,7 +271,7 @@ const DigitalMarketingDetails = ({ project, prevId, nextId }: Props) => {
                                                     <p className="brochure-card-desc mb-3">{brochure.description}</p>
                                                 </div>
                                                 <button
-                                                    onClick={() => handleDownload(brochure.title)}
+                                                    onClick={() => handleDownload(brochure.title, brochure.downloadUrl)}
                                                     className="brochure-download-btn"
                                                 >
                                                     <i className="fa-solid fa-download me-2"></i>
@@ -306,11 +297,11 @@ const DigitalMarketingDetails = ({ project, prevId, nextId }: Props) => {
                                     className={`company-tab-btn ${isActive ? 'active' : ''}`}
                                     onClick={() => {
                                         setActiveCompanyId(company.id)
-                                        // Auto-adjust default active tab if company doesn't have videos
-                                        if ((company.videos || []).length > 0) {
-                                            setActiveTab("videos")
-                                        } else if ((company.images || []).length > 0) {
+                                        // Auto-adjust default active tab if company doesn't have images
+                                        if ((company.images || []).length > 0) {
                                             setActiveTab("images")
+                                        } else if ((company.videos || []).length > 0) {
+                                            setActiveTab("videos")
                                         } else {
                                             setActiveTab("brochures")
                                         }
@@ -335,9 +326,9 @@ const DigitalMarketingDetails = ({ project, prevId, nextId }: Props) => {
                 {/* Navigation Slider Controls */}
                 <div className="slider-button d-flex align-items-center justify-content-between wow fadeInUp mt-5 pt-4" data-wow-delay=".2s">
                     <Link href={`/our-project-details?id=${prevId}`} className="d-flex align-items-center gap-3 text-decoration-none hover-theme-color">
-                        <button className="cmn-prev d-center" type="button">
+                        <div className="cmn-prev d-center">
                             <i className="fas fa-chevron-left"></i>
-                        </button>
+                        </div>
                         <span className="previus-text text-capitalize" style={{ fontWeight: 700, fontSize: "16px" }}>
                             Prev Project
                         </span>
@@ -351,9 +342,9 @@ const DigitalMarketingDetails = ({ project, prevId, nextId }: Props) => {
                         <span className="previus-text text-capitalize" style={{ fontWeight: 700, fontSize: "16px" }}>
                             Next Project
                         </span>
-                        <button className="cmn-next d-center" type="button">
+                        <div className="cmn-next d-center">
                             <i className="fas fa-chevron-right"></i>
-                        </button>
+                        </div>
                     </Link>
                 </div>
             </div>
@@ -373,41 +364,30 @@ const DigitalMarketingDetails = ({ project, prevId, nextId }: Props) => {
                             </button>
                         </div>
                         <div className="video-player-wrapper">
-                            <ReactPlayer
-                                src={activeVideoUrl}
-                                controls
-                                playing
-                                width="100%"
-                                height="100%"
-                                className="lightbox-video-element"
-                            />
+                            {isMounted && (
+                                <ReactPlayer
+                                    src={activeVideoUrl}
+                                    controls
+                                    playing
+                                    width="100%"
+                                    height="100%"
+                                    className="lightbox-video-element"
+                                />
+                            )}
                         </div>
                     </div>
                 </div>
             )}
 
-            {/* Custom Zoom Image Lightbox Modal */}
-            {zoomedImage && (
-                <div className="showcase-image-lightbox" onClick={() => setZoomedImage(null)}>
-                    <div className="lightbox-backdrop-blur"></div>
-                    <div className="image-lightbox-content" onClick={(e) => e.stopPropagation()}>
-                        <button className="lightbox-close-btn top-right-close" onClick={() => setZoomedImage(null)}>
-                            <i className="fa-solid fa-xmark"></i>
-                        </button>
-                        <div className="zoomed-image-wrapper">
-                            <Image
-                                src={zoomedImage.img}
-                                alt={zoomedImage.title}
-                                className="zoomed-img-element"
-                            />
-                        </div>
-                        <div className="image-lightbox-footer p-3 text-center">
-                            <span className="image-lightbox-category">{zoomedImage.category}</span>
-                            <h4 className="image-lightbox-caption text-white">{zoomedImage.title}</h4>
-                        </div>
-                    </div>
-                </div>
-            )}
+            {/* Yet Another React Lightbox */}
+            <Lightbox
+                open={lightboxIndex >= 0}
+                close={() => setLightboxIndex(-1)}
+                index={lightboxIndex}
+                slides={images.map((img) => ({ src: typeof img.img === 'string' ? img.img : (img.img as any).src || '' }))}
+                plugins={[Zoom]}
+                styles={{ root: { "--yarl__portal_zindex": 999999 } as any }}
+            />
 
 
 
@@ -601,6 +581,7 @@ const DigitalMarketingDetails = ({ project, prevId, nextId }: Props) => {
                     font-size: 15px;
                     line-height: 1.7;
                     color: #475569;
+                    white-space: pre-wrap;
                 }
 
                 .service-tag-pill {
@@ -1028,7 +1009,7 @@ const DigitalMarketingDetails = ({ project, prevId, nextId }: Props) => {
                 }
 
                 /* Video Lightbox */
-                .showcase-video-lightbox, .showcase-image-lightbox {
+                .showcase-video-lightbox {
                     position: fixed;
                     top: 0;
                     left: 0;
@@ -1106,42 +1087,90 @@ const DigitalMarketingDetails = ({ project, prevId, nextId }: Props) => {
                 }
 
                 /* Image Lightbox */
+                .showcase-image-lightbox {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 9999;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 30px;
+                    overflow: hidden; /* Strictly prevent scrolling of the lightbox overlay */
+                }
+
+                .lightbox-backdrop-blur {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(15, 23, 42, 0.9);
+                    backdrop-filter: blur(10px);
+                }
+
                 .image-lightbox-content {
                     position: relative;
                     z-index: 2;
                     max-width: 90%;
-                    max-height: 85vh;
+                    max-height: calc(100vh - 120px); /* Bounding container size to fit viewport */
                     display: flex;
                     flex-direction: column;
                     align-items: center;
+                    justify-content: center;
                 }
 
                 .top-right-close {
                     position: absolute;
-                    top: -45px;
-                    right: 0;
-                    color: #ffffff;
+                    top: 20px;
+                    right: 20px;
+                    color: rgba(255, 255, 255, 0.8);
                     font-size: 24px;
+                    background: rgba(255, 255, 255, 0.1);
+                    border: none;
+                    cursor: pointer;
+                    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+                    z-index: 10000;
+                    width: 44px;
+                    height: 44px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
 
-                .zoomed-image-wrapper {
-                    background: #ffffff;
-                    padding: 8px;
-                    border-radius: 12px;
-                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+                .top-right-close:hover {
+                    color: #ffffff;
+                    background: rgba(255, 255, 255, 0.2);
+                    transform: scale(1.1) rotate(90deg);
+                }
+
+                .zoomed-image-container {
+                    display: block;
+                    width: 100%;
+                    max-width: 100%;
+                    text-align: center;
                 }
 
                 .zoomed-img-element {
                     max-width: 100%;
-                    max-height: 70vh;
-                    height: auto;
+                    max-height: calc(100vh - 240px); /* 100vh minus spacing for padding & caption */
                     width: auto;
+                    height: auto;
                     object-fit: contain;
-                    border-radius: 6px;
+                    border-radius: 12px;
+                    border: 8px solid #ffffff;
+                    background: #ffffff;
+                    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+                    display: block;
+                    margin: 0 auto;
                 }
 
                 .image-lightbox-footer {
                     margin-top: 15px;
+                    text-align: center;
                 }
 
                 .image-lightbox-category {
@@ -1222,6 +1251,34 @@ const DigitalMarketingDetails = ({ project, prevId, nextId }: Props) => {
                     }
                     .active-company-card {
                         padding: 30px 20px;
+                    }
+                    .image-lightbox-content {
+                        max-width: 95%;
+                        max-height: calc(100vh - 100px);
+                    }
+                    .zoomed-img-element {
+                        max-height: calc(100vh - 200px);
+                        border-width: 6px;
+                    }
+                }
+                
+                @media (max-width: 767px) {
+                    .showcase-image-lightbox {
+                        padding: 15px;
+                    }
+                    .top-right-close {
+                        top: 15px;
+                        right: 15px;
+                        width: 40px;
+                        height: 40px;
+                        font-size: 20px;
+                    }
+                    .zoomed-img-element {
+                        max-height: calc(100vh - 180px);
+                        border-width: 4px;
+                    }
+                    .image-lightbox-footer {
+                        margin-top: 10px;
                     }
                 }
                 `

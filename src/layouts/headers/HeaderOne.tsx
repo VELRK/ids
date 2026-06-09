@@ -44,9 +44,9 @@ const HeaderOne = () => {
                         </div>
                      </div>
                      <div className="header-right d-flex justify-content-end align-items-center">
-                        <div className="menu_search">
+                        {/* <div className="menu_search">
                            <button onClick={() => setIsSearch(true)} className="search_btn"><i className="far fa-search"></i></button>
-                        </div>
+                        </div> */}
                         <div className="header-btn">
                            <h6>
                               <i className="fa-regular fa-phone-volume"></i>

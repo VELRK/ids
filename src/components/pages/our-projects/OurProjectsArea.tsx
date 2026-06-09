@@ -237,10 +237,9 @@ const OurProjectsArea = () => {
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
-                    min-height: 420px;
-                    height: auto;
+                    height: 100%;
                     border-radius: 20px;
-                    padding: 35px;
+                    padding: 30px;
                     position: relative;
                     box-sizing: border-box;
                     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -429,8 +428,10 @@ const OurProjectsArea = () => {
                     flex-wrap: wrap;
                     gap: 10px;
                     margin-top: auto;
-                    height: auto;
-                    min-height: 44px;
+                }
+                
+                .premium-card-buttons:empty {
+                    display: none;
                 }
                 
                 .store-btn {

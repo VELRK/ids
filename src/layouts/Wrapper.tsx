@@ -1,4 +1,6 @@
+"use client";
 import { ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import { ToastContainer } from "react-toastify";
 import ScrollToTop from "@/components/common/ScrollToTop";
 import ClientAnimations from "./ClientAnimations";
@@ -9,10 +11,12 @@ type WrapperProps = {
 };
 
 const Wrapper = ({ children }: WrapperProps) => {
+  const pathname = usePathname();
+
   return (
     <>
       {children}
-      <ClientAnimations />
+      <ClientAnimations key={pathname} />
       <ScrollToTop />
       <FloatingContact />
       <ToastContainer position="top-center" />
@@ -22,3 +26,4 @@ const Wrapper = ({ children }: WrapperProps) => {
 
 
 export default Wrapper;
+

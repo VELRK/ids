@@ -1086,7 +1086,7 @@
     background: #ffffff;
     border: 1px solid rgba(39, 84, 153, 0.06);
     border-radius: 16px;
-    padding: 40px;
+    padding: 30px 30px 25px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -1113,7 +1113,7 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
 
         .icon-box {
             width: 60px;
@@ -1162,7 +1162,7 @@
             font-size: 15px;
             line-height: 1.6;
             color: $text-color;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .explore-link {

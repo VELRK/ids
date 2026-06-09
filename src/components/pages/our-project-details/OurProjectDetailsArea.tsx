@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Image, { StaticImageData } from "next/image"
 import logo from "@/assets/img/logo/white-logo.svg"
 import Link from "next/link"
@@ -7,14 +7,18 @@ import { useSearchParams } from "next/navigation"
 import our_project_data from "@/data/OurProjectData"
 import ImagePopup from "@/modals/ImagePopup"
 import DigitalMarketingDetails from "./DigitalMarketingDetails"
+import ContactPopup from "@/modals/ContactPopup"
+import Lightbox from "yet-another-react-lightbox"
+import "yet-another-react-lightbox/styles.css"
+import Zoom from "yet-another-react-lightbox/plugins/zoom"
 
 const OurProjectDetailsArea = () => {
     const searchParams = useSearchParams();
     const idParam = searchParams.get("id");
     const projectId = idParam ? parseInt(idParam) : 1;
 
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [selectedImage, setSelectedImage] = useState<StaticImageData | string | null>(null);
+    const [lightboxIndex, setLightboxIndex] = useState(-1);
+    const [isContactPopupOpen, setIsContactPopupOpen] = useState(false);
 
     // Redirect Portal Overlay State
     const [redirectStatus, setRedirectStatus] = useState<{
@@ -23,6 +27,17 @@ const OurProjectDetailsArea = () => {
     } | null>(null);
     const [redirectTimeoutId, setRedirectTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
+    // Prevent body scroll when overlays/lightboxes are active
+    useEffect(() => {
+        if (lightboxIndex >= 0 || redirectStatus) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [lightboxIndex, redirectStatus]);
     const handleRedirectClick = (dest: string, url: string) => {
         setRedirectStatus({ destinationName: dest, url });
 
@@ -47,10 +62,10 @@ const OurProjectDetailsArea = () => {
     // Navigation calculation (cycle within same projectType)
     const filteredProjects = our_project_data.filter(item => item.projectType === project.projectType);
     const currentIndex = filteredProjects.findIndex(item => item.id === project.id);
-    
+
     const prevProject = filteredProjects[currentIndex === 0 ? filteredProjects.length - 1 : currentIndex - 1];
     const nextProject = filteredProjects[currentIndex === filteredProjects.length - 1 ? 0 : currentIndex + 1];
-    
+
     const prevId = prevProject ? prevProject.id : 1;
     const nextId = nextProject ? nextProject.id : 1;
 
@@ -228,10 +243,7 @@ const OurProjectDetailsArea = () => {
                                         <div key={idx} className="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay={`${0.7 + idx * 0.1}s`}>
                                             <div
                                                 className="gallery-card"
-                                                onClick={() => {
-                                                    setSelectedImage(galleryImg);
-                                                    setIsPopupOpen(true);
-                                                }}
+                                                onClick={() => setLightboxIndex(idx)}
                                             >
                                                 <div className="gallery-img-container">
                                                     <Image
@@ -319,10 +331,10 @@ const OurProjectDetailsArea = () => {
                                         </div>
                                         <div style={{ marginTop: '50px' }}>
                                             <h3 className="mb-3 text-white" style={{ fontSize: '24px', fontWeight: 800, lineHeight: 1.3 }}>Let’s Bring Digital Ideas to Life.</h3>
-                                            <Link href="/contact" className="theme-btn text-white text-decoration-none premium-cta-btn">
+                                            <button onClick={() => setIsContactPopupOpen(true)} className="theme-btn text-white text-decoration-none premium-cta-btn">
                                                 <span>Get in touch</span>
                                                 <i className="fa-solid fa-arrow-up-right ms-2 animate-bounce-right"></i>
-                                            </Link>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -332,10 +344,14 @@ const OurProjectDetailsArea = () => {
                 </div>
             </div>
 
-            <ImagePopup
-                isOpen={isPopupOpen}
-                onClose={() => setIsPopupOpen(false)}
-                imageSrc={selectedImage}
+            {/* Yet Another React Lightbox */}
+            <Lightbox
+                open={lightboxIndex >= 0}
+                close={() => setLightboxIndex(-1)}
+                index={lightboxIndex}
+                slides={project.gallery.map((img) => ({ src: typeof img === 'string' ? img : (img as any).src || '' }))}
+                plugins={[Zoom]}
+                styles={{ root: { "--yarl__portal_zindex": 999999 } as any }}
             />
 
             {/* Portals Redirecting Overlay */}
@@ -368,6 +384,12 @@ const OurProjectDetailsArea = () => {
                     </div>
                 </div>
             )}
+
+            {/* Contact Popup Modal */}
+            <ContactPopup
+                isOpen={isContactPopupOpen}
+                onClose={() => setIsContactPopupOpen(false)}
+            />
 
             {/* Custom Embedded CSS overrides for premium interactions */}
             <style dangerouslySetInnerHTML={{
@@ -1046,6 +1068,141 @@ const OurProjectDetailsArea = () => {
                 .cancel-redirect-btn:hover {
                     background: #e2e8f0;
                     color: #0f172a;
+                }
+
+                /* Image Lightbox */
+                .showcase-image-lightbox {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 9999;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 30px;
+                    overflow: hidden; /* Strictly prevent scrolling of the lightbox overlay */
+                }
+
+                .lightbox-backdrop-blur {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(15, 23, 42, 0.9);
+                    backdrop-filter: blur(10px);
+                }
+
+                .image-lightbox-content {
+                    position: relative;
+                    z-index: 2;
+                    max-width: 90%;
+                    max-height: calc(100vh - 120px); /* Bounding container size to fit viewport */
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .top-right-close {
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    color: rgba(255, 255, 255, 0.8);
+                    font-size: 24px;
+                    background: rgba(255, 255, 255, 0.1);
+                    border: none;
+                    cursor: pointer;
+                    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+                    z-index: 10000;
+                    width: 44px;
+                    height: 44px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .top-right-close:hover {
+                    color: #ffffff;
+                    background: rgba(255, 255, 255, 0.2);
+                    transform: scale(1.1) rotate(90deg);
+                }
+
+                .zoomed-image-container {
+                    display: block;
+                    width: 100%;
+                    max-width: 100%;
+                    text-align: center;
+                }
+
+                .zoomed-img-element {
+                    max-width: 100%;
+                    max-height: calc(100vh - 240px); /* 100vh minus spacing for padding & caption */
+                    width: auto;
+                    height: auto;
+                    object-fit: contain;
+                    border-radius: 12px;
+                    border: 8px solid #ffffff;
+                    background: #ffffff;
+                    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+                    display: block;
+                    margin: 0 auto;
+                }
+
+                .image-lightbox-footer {
+                    margin-top: 15px;
+                    text-align: center;
+                }
+
+                .image-lightbox-category {
+                    color: #3b82f6;
+                    font-size: 12px;
+                    font-weight: 800;
+                    letter-spacing: 0.5px;
+                    text-transform: uppercase;
+                    display: block;
+                    margin-bottom: 4px;
+                }
+
+                .image-lightbox-caption {
+                    font-size: 16px;
+                    font-weight: 700;
+                    margin: 0;
+                }
+
+                /* Responsive helpers */
+                @media (max-width: 991px) {
+                    .image-lightbox-content {
+                        max-width: 95%;
+                        max-height: calc(100vh - 100px);
+                    }
+                    .zoomed-img-element {
+                        max-height: calc(100vh - 200px);
+                        border-width: 6px;
+                    }
+                }
+                
+                @media (max-width: 767px) {
+                    .showcase-image-lightbox {
+                        padding: 15px;
+                    }
+                    .top-right-close {
+                        top: 15px;
+                        right: 15px;
+                        width: 40px;
+                        height: 40px;
+                        font-size: 20px;
+                    }
+                    .zoomed-img-element {
+                        max-height: calc(100vh - 180px);
+                        border-width: 4px;
+                    }
+                    .image-lightbox-footer {
+                        margin-top: 10px;
+                    }
                 }
             `}} />
         </section>

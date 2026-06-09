@@ -16,11 +16,18 @@ const useSticky = (): StickyState => {
    };
 
    useEffect(() => {
-      window.addEventListener("scroll", stickyHeader);
-      return () => window.removeEventListener("scroll", stickyHeader);
+      const handle = setTimeout(() => {
+         window.addEventListener("scroll", stickyHeader);
+         stickyHeader(); // Initialize correct state after settling
+      }, 50);
+
+      return () => {
+         clearTimeout(handle);
+         window.removeEventListener("scroll", stickyHeader);
+      };
    }, []);
 
    return { sticky };
 }
 
-export default useSticky;
+export default useSticky;
