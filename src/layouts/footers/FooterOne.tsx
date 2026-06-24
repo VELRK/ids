@@ -38,7 +38,7 @@ const FooterOne = () => {
                               <h3>Subscribe Newsletter</h3>
                            </div>
                            <div className="contact-item">
-                              <form action="https://formsubmit.co/intellectworks58@gmail.com" method="POST">
+                              <form action="https://formsubmit.co/info@syncr.in" method="POST">
                                  <input type="email" name="email" placeholder="Email address" required />
                                  <input type="hidden" name="_subject" value="New Newsletter Subscription" />
                                  <button type="submit" className="theme-btn w-100" style={{ marginTop: '10px' }}>

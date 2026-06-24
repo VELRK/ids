@@ -41,8 +41,8 @@ const ContactInfo = () => {
                                     </Link>
                                 </p>
                                 <p>
-                                    <Link className="d-block" href="mailto:intellectworks58@gmail.com">
-                                        intellectworks58@gmail.com
+                                    <Link className="d-block" href="mailto:info@syncr.in">
+                                        info@syncr.in
                                     </Link>
                                 </p>
                             </div>
