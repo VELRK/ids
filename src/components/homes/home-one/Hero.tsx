@@ -1,10 +1,12 @@
 "use client"
 import Image from 'next/image'
-import VideoPopup from '@/modals/VideoPopup'
 import { useRef, useState } from 'react'
 import Link from 'next/link'
 import TitleShape from '@/components/common/TitleShape'
 import useHeroParallax from '@/hooks/useHeroParallax'
+import dynamic from 'next/dynamic'
+
+const VideoPopup = dynamic(() => import('@/modals/VideoPopup'), { ssr: false });
 
 import rating from "@/assets/img/home-1/hero/rating.png"
 // import hero_img2 from "@/assets/img/home-1/hero/hero-1.jpg"
@@ -62,7 +64,7 @@ const Hero = () => {
                                             <Image src={client_2} alt="img" />
                                         </div>
                                         <div className="group-image style-2">
-                                            <Image src={client_3} alt="img" />
+                                            <Image src={client_3} alt="img" priority />
                                         </div>
                                         <div className="icon">
                                             <i className="fa-solid fa-plus"></i>
@@ -77,7 +79,7 @@ const Hero = () => {
                                         <i className="fa-solid fa-play"></i>
                                     </a>
                                     <div className="text-circle">
-                                        <Image src={text} alt="img" />
+                                        <Image src={text} alt="img" priority />
                                     </div>
                                 </div>
                             </div>

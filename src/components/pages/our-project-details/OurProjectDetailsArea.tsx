@@ -5,12 +5,14 @@ import logo from "@/assets/img/logo/white-logo.svg"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import our_project_data from "@/data/OurProjectData"
-import ImagePopup from "@/modals/ImagePopup"
 import DigitalMarketingDetails from "./DigitalMarketingDetails"
-import ContactPopup from "@/modals/ContactPopup"
 import Lightbox from "yet-another-react-lightbox"
 import "yet-another-react-lightbox/styles.css"
 import Zoom from "yet-another-react-lightbox/plugins/zoom"
+import dynamic from "next/dynamic"
+
+const ContactPopup = dynamic(() => import("@/modals/ContactPopup"), { ssr: false });
+const ImagePopup = dynamic(() => import("@/modals/ImagePopup"), { ssr: false });
 
 const OurProjectDetailsArea = () => {
     const searchParams = useSearchParams();

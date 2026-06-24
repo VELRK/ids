@@ -12,7 +12,7 @@ const useScaleGsapAnimation = () => {
         const scales = document.querySelectorAll<HTMLElement>(".scale");
         const images = document.querySelectorAll<HTMLImageElement>(".scale img");
 
-        const triggers: ScrollTrigger[] = [];
+        const tweens: gsap.core.Tween[] = [];
 
         scales.forEach((item) => {
             const anim = gsap.to(item, {
@@ -26,10 +26,7 @@ const useScaleGsapAnimation = () => {
                     toggleActions: "play reverse play reverse",
                 },
             });
-
-            if (anim.scrollTrigger) {
-                triggers.push(anim.scrollTrigger);
-            }
+            tweens.push(anim);
         });
 
         images.forEach((image) => {
@@ -45,14 +42,16 @@ const useScaleGsapAnimation = () => {
                     toggleActions: "play reverse play reverse",
                 },
             });
-
-            if (anim.scrollTrigger) {
-                triggers.push(anim.scrollTrigger);
-            }
+            tweens.push(anim);
         });
 
         return () => {
-            triggers.forEach((st) => st.kill());
+            tweens.forEach((t) => {
+                if (t.scrollTrigger) {
+                    t.scrollTrigger.kill();
+                }
+                t.kill();
+            });
         };
     }, []);
 };

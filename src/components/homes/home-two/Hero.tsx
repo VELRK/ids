@@ -97,7 +97,7 @@ const Hero = () => {
 
             <div className="container-fluid full-img-wrap3">
                 <div className="hero-imagee full-img3">
-                    <Image src={main_img} alt="img" />
+                    <Image src={main_img} alt="img" priority />
                 </div>
             </div>
         </section>

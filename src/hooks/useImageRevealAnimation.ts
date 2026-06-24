@@ -12,7 +12,7 @@ const useImageRevealAnimation = (selector = ".td_image_animetion") => {
       const elements = document.querySelectorAll<HTMLElement>(selector);
       if (!elements.length) return;
 
-      const triggers: ScrollTrigger[] = [];
+      const timelines: gsap.core.Timeline[] = [];
 
       elements.forEach((imgReveal) => {
          const image = imgReveal.querySelector("img");
@@ -47,13 +47,16 @@ const useImageRevealAnimation = (selector = ".td_image_animetion") => {
             0
          );
 
-         if (tl.scrollTrigger) {
-            triggers.push(tl.scrollTrigger);
-         }
+         timelines.push(tl);
       });
 
       return () => {
-         triggers.forEach((t) => t.kill());
+         timelines.forEach((tl) => {
+            if (tl.scrollTrigger) {
+               tl.scrollTrigger.kill();
+            }
+            tl.kill();
+         });
       };
    }, [selector]);
 };

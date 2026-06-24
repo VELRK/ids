@@ -12,13 +12,25 @@ const ScrollToTop = () => {
    };
 
    useEffect(() => {
+      let rafId: number | null = null;
+
       const checkScrollTop = () => {
-         const currentScroll = window.scrollY > 400;
-         setShowScroll((prev) => (prev !== currentScroll ? currentScroll : prev));
+         if (rafId !== null) return;
+
+         rafId = window.requestAnimationFrame(() => {
+            const currentScroll = window.scrollY > 400;
+            setShowScroll((prev) => (prev !== currentScroll ? currentScroll : prev));
+            rafId = null;
+         });
       };
 
       window.addEventListener("scroll", checkScrollTop);
-      return () => window.removeEventListener("scroll", checkScrollTop);
+      return () => {
+         window.removeEventListener("scroll", checkScrollTop);
+         if (rafId !== null) {
+            window.cancelAnimationFrame(rafId);
+         }
+      };
    }, []);
 
    return (

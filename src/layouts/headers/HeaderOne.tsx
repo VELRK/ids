@@ -4,10 +4,12 @@ import Image from "next/image"
 import { useState } from "react";
 import Offcanvas from "./Menu/Offcanvas";
 import HeaderSearch from "./Menu/HeaderSearch";
-import ContactPopup from "@/modals/ContactPopup";
 import NavMenu from "./Menu/NavMenu";
 import HeaderTop from "./Menu/HeaderTop";
 import useSticky from "@/hooks/useSticky";
+import dynamic from "next/dynamic";
+
+const ContactPopup = dynamic(() => import("@/modals/ContactPopup"), { ssr: false });
 
 import logo_1 from "@/assets/img/logo/white-logo.svg";
 import logo_2 from "@/assets/img/logo/black-logo.svg";
@@ -29,10 +31,10 @@ const HeaderOne = () => {
                      <div className="header-left">
                         <div className="logo">
                            <Link href="/" className="header-logo">
-                              <Image src={logo_1} alt="logo-img" />
+                              <Image src={logo_1} alt="logo-img" priority />
                            </Link>
                            <Link href="/" className="header-logo-2">
-                              <Image src={logo_2} alt="logo-img" />
+                              <Image src={logo_2} alt="logo-img" priority />
                            </Link>
                         </div>
                      </div>

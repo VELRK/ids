@@ -20,17 +20,24 @@ export default function useSmoothScroll() {
          ScrollTrigger.clearScrollMemory();
       }
 
-      // Smooth scroll initialize
-      const smoother = ScrollSmoother.create({
-         wrapper: "#smooth-wrapper",
-         content: "#smooth-content",
-         smooth: 1.2,
-         effects: true,
-         normalizeScroll: true,
-      });
+      // Check if mobile device
+      const isMobile = window.matchMedia("(max-width: 1023px)").matches || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-      // Ensure smoother starts at top and refresh scroll trigger bounds
-      smoother.scrollTop(0);
+      let smoother: any = null;
+      if (!isMobile) {
+         // Smooth scroll initialize
+         smoother = ScrollSmoother.create({
+            wrapper: "#smooth-wrapper",
+            content: "#smooth-content",
+            smooth: 1.2,
+            effects: true,
+            normalizeScroll: false,
+         });
+
+         // Ensure smoother starts at top
+         smoother.scrollTop(0);
+      }
+
       ScrollTrigger.refresh();
 
       // Anchor hash scroll
@@ -53,19 +60,29 @@ export default function useSmoothScroll() {
             element.getBoundingClientRect().top +
             (window.scrollY || window.pageYOffset);
 
-         // Smooth scroll to section using the existing smoother
-         gsap.to(smoother, {
-            scrollTop: top,
-            duration: 1,
-            ease: "power2.inOut",
-         });
+         if (smoother) {
+            // Smooth scroll to section using the existing smoother
+            gsap.to(smoother, {
+               scrollTop: top,
+               duration: 1,
+               ease: "power2.inOut",
+            });
+         } else {
+            // Native fallback for mobile/touch
+            window.scrollTo({
+               top,
+               behavior: "smooth",
+            });
+         }
       };
 
       document.addEventListener("click", handleClick);
 
       return () => {
          document.removeEventListener("click", handleClick);
-         smoother.kill();
+         if (smoother) {
+            smoother.kill();
+         }
       };
    }, [pathname]);
 }

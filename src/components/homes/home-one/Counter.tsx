@@ -1,11 +1,13 @@
 "use client"
 import { useState } from "react"
 import counter_data from "@/data/CounterData"
-import VideoPopup from "@/modals/VideoPopup"
 import Image from "next/image"
 import BrandRtl from "./BrandRtl"
 import TitleShape from '@/components/common/TitleShape'
 import Link from "next/link"
+import dynamic from "next/dynamic"
+
+const VideoPopup = dynamic(() => import("@/modals/VideoPopup"), { ssr: false });
 
 import bg_img from "@/assets/img/home-1/bg.jpg"
 import img_2 from "@/assets/img/home-1/hero/text.png"

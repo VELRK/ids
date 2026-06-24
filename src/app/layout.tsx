@@ -6,12 +6,14 @@ const plusJakarta = Plus_Jakarta_Sans({
   weight: ["200", "300", "400", "500", "600", "700", "800"],
   subsets: ["latin"],
   variable: '--heading-font',
+  display: 'swap',
 });
 
 const inter = Inter({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: '--body-font',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {

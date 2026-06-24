@@ -8,14 +8,14 @@ const Hero = () => {
     return (
         <section className="hero-section hero-4 fix">
             <div className="hero-shape">
-                <Image src={shape} alt="img" />
+                <Image src={shape} alt="img" priority />
             </div>
             <div className="container">
                 <div className="row g-4 justify-content-center">
                     <div className="col-lg-10">
                         <div className="hero-content">
                             <span className="sub">
-                                <Image src={icon} alt="img" />
+                                <Image src={icon} alt="img" priority />
                                 our security services
                             </span>
                             <h1>
