@@ -14,7 +14,7 @@ const HeaderTop = () => {
                      <li>।</li>
                      <li>
                         <i className="fa-regular fa-envelope"></i>
-                        <Link href="mailto:info@syncr.in">info@syncr.in</Link>
+                        <Link href="mailto:sales@intellectworksdigital.com">sales@intellectworksdigital.com</Link>
                      </li>
                   </ul>
                </div>
